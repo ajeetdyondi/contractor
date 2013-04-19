@@ -50,7 +50,7 @@ namespace Contractor.Test
         private static ISessionFactory CreateSessionFactory()
         {
             return Fluently.Configure()
-              .Database(MsSqlCeConfiguration.Standard.ConnectionString("Data Source=" + DbFile).ShowSql())
+              .Database(MySQLConfiguration.Standard.)
               .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Address>())
               .BuildSessionFactory();
         }
