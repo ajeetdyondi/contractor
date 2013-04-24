@@ -3,11 +3,11 @@
     using Models;
     using FluentNHibernate.Mapping;
 
-    public class AgencyMap : SubclassMap<Agency>
+    public class ClientMap : SubclassMap<Client>
     {
-        public AgencyMap()
+        public ClientMap()
         {
-            DiscriminatorValue(2);
+            DiscriminatorValue(3);
         }
     }
 }

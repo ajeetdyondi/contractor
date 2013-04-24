@@ -4,8 +4,7 @@
 
     public class Address
     {
-        public virtual Byte Id { get; protected set; }
-        public virtual String Description { get; set; }
+        public virtual ushort Id { get; protected set; }
         public virtual String Line1 { get; set; }
         public virtual String Line2 { get; set; }
         public virtual String Line3 { get; set; }

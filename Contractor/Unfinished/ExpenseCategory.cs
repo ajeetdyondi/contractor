@@ -1,6 +1,6 @@
 namespace Contractor.Models
 {
-    public enum ExpenseCategory : short
+    public enum ExpenseCategory : ushort
     {
         TravelAndAccommodation = 0,
         Accountancy = 1,

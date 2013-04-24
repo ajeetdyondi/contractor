@@ -14,7 +14,7 @@
         /// <remarks>
         /// Read-only property
         /// </remarks>
-        public virtual short Id { get; protected set; }
+        public virtual ushort Id { get; protected set; }
 
         /// <summary>
         /// Gets or sets the date on which this schedule was agreed or signed

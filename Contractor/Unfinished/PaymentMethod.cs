@@ -1,6 +1,6 @@
 namespace Contractor.Models
 {
-    public enum PaymentMethod : short
+    public enum PaymentMethod : ushort
     {
         DirectDebit = 0,
         BusinessDebit = 1,

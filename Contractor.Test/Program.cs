@@ -1,26 +1,20 @@
-﻿using System.Collections.Generic;
-using Contractor.Models;
-using FluentNHibernate.Cfg;
-using FluentNHibernate.Cfg.Db;
-using NHibernate;
-
-namespace Contractor.Test
+﻿namespace Contractor.Test
 {
-    class Program
-    {
-        private const string DbFile = @"C:\Repositories\Contractor\Database\Contractor.sdf";
+    using System;
+    using Models;
 
-        static void Main(string[] args)
+    public class Program
+    {
+        public static void Main(string[] args)
         {
-            var sessionFactory = CreateSessionFactory();
+            var sessionFactory = SessionFactory.Instance;
 
             using (var session = sessionFactory.OpenSession())
             {
                 using (var transaction = session.BeginTransaction())
                 {
-                    Address address = new Address
+                    Address address1 = new Address
                         {
-                            Name = "Address 1",
                             Line1 = "18 Apartment XX",
                             Line2 = "London Street",
                             City = "London",
@@ -30,29 +24,33 @@ namespace Contractor.Test
 
                     Address address2 = new Address
                     {
-                        Name = "Address 2",
                         Line1 = "18 Apartment XX",
-                        Line2 = "London Street",
                         City = "London",
                         PostCode = "ABC1 4EF",
                         Country = "UK"
                     };
 
-                    Agency agency = new Agency { Name = "Agency 1", Email = "abc@agency1.com", WorkPhone = "1234-567-890", Addresses = new List<Address> { address } };
-                    Agency agency2 = new Agency { Name = "Agency 2", Email = "abc@agency1.com", WorkPhone = "1234-567-890", Addresses = new List<Address> { address2 } };
+                    session.SaveOrUpdate(address2);
+
+                    session.SaveOrUpdate(address1);
+
+                    Agency agency = new Agency {Name = "Agency 1", Person = "John Doe"};
+                    Contact info1 = new Contact { Address = address1, Email = "abcd@efgh.com", Entity = agency };
+                    agency.Contacts.AddAsCurrent(info1);
+
+                    Client client = new Client { Name = "Client 1", Person = "Jane Doe" };
+                    Contact info2 = new Contact { Address = address2, Email = "abcd@efgh.com", Entity = client };
+                    client.Contacts.AddAsCurrent(info2);
+
+                    session.SaveOrUpdate(client);
+
                     session.SaveOrUpdate(agency);
-                    session.SaveOrUpdate(agency2);
+
                     transaction.Commit();
+
+                    Console.Write("");
                 }
             }
-        }
-
-        private static ISessionFactory CreateSessionFactory()
-        {
-            return Fluently.Configure()
-              .Database(MySQLConfiguration.Standard.)
-              .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Address>())
-              .BuildSessionFactory();
         }
     }
 }

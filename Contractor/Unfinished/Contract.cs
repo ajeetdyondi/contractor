@@ -5,7 +5,7 @@
 
     public class Contract
     {
-        public virtual short Id { get; protected set; }
+        public virtual ushort Id { get; protected set; }
         public virtual string Name { get; set; }
         public virtual DateTime Date { get; set; }
         public virtual Agency Agency { get; set; }
