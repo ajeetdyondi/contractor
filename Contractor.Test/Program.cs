@@ -1,12 +1,19 @@
 ﻿namespace Contractor.Test
 {
-    using System;
     using Models;
+    using log4net;
 
     public class Program
     {
+        private static ILog Logger = LogManager.GetLogger(typeof(Program));
+
         public static void Main(string[] args)
         {
+            Logger.Debug("Test");
+            Logger.Error("Test");
+            Logger.Fatal("Test");
+            Logger.Info("Test");
+            Logger.Warn("Test");
             var sessionFactory = SessionFactory.Instance;
 
             using (var session = sessionFactory.OpenSession())
@@ -47,8 +54,6 @@
                     session.SaveOrUpdate(agency);
 
                     transaction.Commit();
-
-                    Console.Write("");
                 }
             }
         }

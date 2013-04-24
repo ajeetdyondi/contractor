@@ -1,13 +1,13 @@
-﻿using System;
-using System.Configuration;
-using Contractor.Models;
-using FluentNHibernate.Cfg;
-using FluentNHibernate.Cfg.Db;
-using NHibernate;
-using NHibernate.Tool.hbm2ddl;
-
-namespace Contractor
+﻿namespace Contractor
 {
+    using System;
+    using System.Configuration;
+    using Contractor.Models;
+    using FluentNHibernate.Cfg;
+    using FluentNHibernate.Cfg.Db;
+    using NHibernate;
+    using NHibernate.Tool.hbm2ddl;
+
     public static class SessionFactory
     {
         private static ISessionFactory _instance;
@@ -19,17 +19,24 @@ namespace Contractor
 
         private static ISessionFactory CreateSessionFactory()
         {
+            var mySqlConfig = MySQLConfiguration.Standard;
+            if (Boolean.Parse(ConfigurationManager.AppSettings["ShowSQL"]))
+            {
+                mySqlConfig.ShowSql();
+            }
+            mySqlConfig.ConnectionString(ConfigurationManager.AppSettings["ConnectionString"]);
+
             var config = Fluently.Configure()
-                           .Database(MySQLConfiguration.Standard.ConnectionString(ConfigurationManager.AppSettings["ConnectionString"]))
+                           .Database(mySqlConfig)
                            .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Entity>())
                            .BuildConfiguration();
 
             if (Boolean.Parse(ConfigurationManager.AppSettings["GenerateSchema"]))
             {
                 SchemaExport schema = new SchemaExport(config);
-                if (Boolean.Parse(ConfigurationManager.AppSettings["OutputToSql"]))
+                if (Boolean.Parse(ConfigurationManager.AppSettings["OutputDDLToFile"]))
                 {
-                    schema.SetOutputFile(ConfigurationManager.AppSettings["OutputSqlFile"]);
+                    schema.SetOutputFile(ConfigurationManager.AppSettings["OutputDDLFilePath"]);
                 }
                 schema.Execute(true, true, false);
             }
