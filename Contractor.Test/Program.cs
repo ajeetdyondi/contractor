@@ -56,8 +56,12 @@
 
                     transaction.Commit();
                 }
-
+            }
+            using (var session = sessionFactory.OpenSession())
+            {
                 var x = session.QueryOver<Agency>().List();
+                var y = x[0].Contacts.Count;
+                var z = x[0].Contacts;
             }
         }
     }
