@@ -44,7 +44,7 @@
         public void Add(T item)
         {
             InnerList.Add(item);
-            InnerList = InnerList.OrderBy(x => x.StartDate).ToList();
+            //InnerList = InnerList.OrderBy(x => x.StartDate).ToList();
         }
 
         public void AddAsCurrent(T item)

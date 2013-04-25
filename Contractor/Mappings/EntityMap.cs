@@ -1,8 +1,7 @@
-﻿using FluentNHibernate;
-
-namespace Contractor.Mappings
+﻿namespace Contractor.Mappings
 {
     using Models;
+    using FluentNHibernate;
     using FluentNHibernate.Mapping;
 
     public class EntityMap : ClassMap<Entity>

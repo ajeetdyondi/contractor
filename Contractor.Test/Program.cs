@@ -1,5 +1,6 @@
 ﻿namespace Contractor.Test
 {
+    using System;
     using Models;
     using log4net;
 
@@ -42,19 +43,21 @@
                     session.SaveOrUpdate(address1);
 
                     Agency agency = new Agency {Name = "Agency 1", Person = "John Doe"};
-                    Contact info1 = new Contact { Address = address1, Email = "abcd@efgh.com", Entity = agency };
-                    agency.Contacts.AddAsCurrent(info1);
+                    
+                    Contact info1 = new Contact { Address = address1, Email = "first@efgh.com", StartDate = new DateTime(2012, 12, 01), EndDate = new DateTime(2012, 12, 31), Entity = agency };
+                    Contact info2 = new Contact { Address = address2, Email = "second@efgh.com", StartDate = new DateTime(2013, 01, 01), EndDate = new DateTime(2013, 04, 01), Entity = agency };
+                    Contact info3 = new Contact { Address = address2, Email = "third@efgh.com", StartDate = new DateTime(2013, 04, 02), Entity = agency };
 
-                    Client client = new Client { Name = "Client 1", Person = "Jane Doe" };
-                    Contact info2 = new Contact { Address = address2, Email = "abcd@efgh.com", Entity = client };
-                    client.Contacts.AddAsCurrent(info2);
-
-                    session.SaveOrUpdate(client);
+                    agency.Contacts.Add(info2);
+                    agency.Contacts.Add(info1);
+                    agency.Contacts.Add(info3);
 
                     session.SaveOrUpdate(agency);
 
                     transaction.Commit();
                 }
+
+                var x = session.QueryOver<Agency>().List();
             }
         }
     }

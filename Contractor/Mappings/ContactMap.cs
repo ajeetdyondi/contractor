@@ -9,12 +9,12 @@
         {
             Table("Contact");
             Id(x => x.Id).GeneratedBy.Identity();
-            References(x => x.Entity).Column("EntityId").ForeignKey("FK_Contact_Entity");
+            References(x => x.Entity).Column("EntityId").ForeignKey("FK_Contact_Entity").Not.Nullable();
             Map(x => x.Email);
             Map(x => x.BillingEmail);
             Map(x => x.Telephone);
             Map(x => x.Mobile);
-            References(x => x.Address).Column("AddressId").ForeignKey("FK_Contact_Address").Cascade.All();
+            References(x => x.Address).Column("AddressId").ForeignKey("FK_Contact_Address").Not.Nullable().Cascade.All();
             Map(x => x.StartDate).Not.Nullable().CustomSqlType("Date");
             Map(x => x.EndDate).CustomSqlType("Date");
             Map(x => x.LastUpdated).Generated.Always().ReadOnly().CustomSqlType("TIMESTAMP");
