@@ -75,6 +75,7 @@
     <Compile Include="Models\IAuditableList.cs" />
     <Compile Include="Models\IContactable.cs" />
     <Compile Include="SessionFactory.cs" />
+    <Compile Include="Unfinished\Config.cs" />
     <Compile Include="Unfinished\Contract.cs" />
     <Compile Include="Unfinished\BankAccount.cs" />
     <Compile Include="Models\Company.cs" />

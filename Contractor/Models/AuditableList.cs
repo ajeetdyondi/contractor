@@ -7,7 +7,7 @@
 
     public class AuditableList<T> : IAuditableList<T> where T : class, ITimeBound
     {
-        protected readonly IList<T> InnerList;
+        protected IList<T> InnerList;
 
         public AuditableList()
         {
@@ -44,6 +44,7 @@
         public void Add(T item)
         {
             InnerList.Add(item);
+            InnerList = InnerList.OrderBy(x => x.StartDate).ToList();
         }
 
         public void AddAsCurrent(T item)
@@ -56,7 +57,7 @@
 
             item.StartDate = DateTime.Now.Date;
             item.EndDate = null;
-            InnerList.Add(item);
+            Add(item);
         }
 
     }
