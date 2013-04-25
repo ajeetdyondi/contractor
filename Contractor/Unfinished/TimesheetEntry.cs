@@ -10,5 +10,8 @@ namespace Contractor.Models
         public string Comments { get; set; }
     
         public virtual Schedule Schedule { get; set; }
+
+        // Bank Holiday = Date
+        // morning, noon, extra?
     }
 }

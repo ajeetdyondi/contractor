@@ -12,5 +12,7 @@ namespace Contractor.Models
         public DateTime PaidOn { get; set; }
         public PaymentMethod PaidBy { get; set; }
         public ReimbursementMethod ReimbursedBy { get; set; }
+        // Person
+        // ReceiptNo
     }
 }

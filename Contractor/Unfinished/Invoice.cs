@@ -12,5 +12,7 @@ namespace Contractor.Models
         public DateTime? PaidOn { get; set; }
     
         public virtual Schedule Schedule { get; set; }
+
+        // days, net , vat, gross, paidon, personId
     }
 }

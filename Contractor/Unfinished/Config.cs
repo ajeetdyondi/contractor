@@ -6,5 +6,6 @@ namespace Contractor.Models
     {
         public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
+        // VAT Rate, Corp Tax Rate, Tax Credit %
     }
 }

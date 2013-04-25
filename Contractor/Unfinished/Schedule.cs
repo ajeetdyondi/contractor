@@ -29,7 +29,9 @@
         /// <summary>
         /// Gets or sets the role or job title of the contractor
         /// </summary>
-        public virtual string Role { get; set; }
+        public virtual string Role { get; set; }  // Job Title
+
+        
 
         /// <summary>
         /// Gets or sets the daily rate paid for the contractor (if there is one defined)
