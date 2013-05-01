@@ -6,15 +6,12 @@
 
     public class Program
     {
-        private static ILog Logger = LogManager.GetLogger(typeof(Program));
+        private static ILog _logger = LogManager.GetLogger("Test");
 
         public static void Main(string[] args)
         {
-            Logger.Debug("Test");
-            Logger.Error("Test");
-            Logger.Fatal("Test");
-            Logger.Info("Test");
-            Logger.Warn("Test");
+            _logger.Debug("Start");
+
             var sessionFactory = SessionFactory.Instance;
 
             using (var session = sessionFactory.OpenSession())
@@ -44,9 +41,9 @@
 
                     Agency agency = new Agency {Name = "Agency 1", Person = "John Doe"};
                     
-                    Contact info1 = new Contact { Address = address1, Email = "first@efgh.com", StartDate = new DateTime(2012, 12, 01), EndDate = new DateTime(2012, 12, 31), Entity = agency };
-                    Contact info2 = new Contact { Address = address2, Email = "second@efgh.com", StartDate = new DateTime(2013, 01, 01), EndDate = new DateTime(2013, 04, 01), Entity = agency };
-                    Contact info3 = new Contact { Address = address2, Email = "third@efgh.com", StartDate = new DateTime(2013, 04, 02), Entity = agency };
+                    Contact info1 = new Contact { Address = address1, Email = "first@efgh.com", StartDate = new DateTime(2012, 12, 01), EndDate = new DateTime(2012, 12, 31) };
+                    Contact info2 = new Contact { Address = address2, Email = "second@efgh.com", StartDate = new DateTime(2013, 01, 01), EndDate = new DateTime(2013, 04, 01) };
+                    Contact info3 = new Contact { Address = address2, Email = "third@efgh.com", StartDate = new DateTime(2013, 04, 02) };
 
                     agency.Contacts.Add(info2);
                     agency.Contacts.Add(info1);

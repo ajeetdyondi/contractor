@@ -17,9 +17,9 @@
                       m =>
                       m.HasMany<Contact>(Reveal.Member<AuditableList<Contact>>("InnerList"))
                        .KeyColumn("EntityId")
+                       .Inverse()
                        .Cascade.All()
-                       .OrderBy("StartDate Asc")
-                       .LazyLoad());
+                       .OrderBy("StartDate Asc"));
 
             Map(x => x.Person);
             Map(x => x.LastUpdated).Generated.Always().ReadOnly().CustomSqlType("TIMESTAMP");

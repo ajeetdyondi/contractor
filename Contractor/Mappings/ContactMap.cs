@@ -9,7 +9,6 @@
         {
             Table("Contact");
             Id(x => x.Id).GeneratedBy.Identity();
-            References(x => x.Entity).Column("EntityId").ForeignKey("FK_Contact_Entity").Not.Nullable();
             Map(x => x.Email);
             Map(x => x.BillingEmail);
             Map(x => x.Telephone);

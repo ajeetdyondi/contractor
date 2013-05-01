@@ -5,7 +5,6 @@
     public class Contact : ITimeBound
     {
         public virtual ushort Id { get; set; }
-        public virtual Entity Entity { get; set; }
         public virtual Address Address { get; set; }
         public virtual String Email { get; set; }
         public virtual String BillingEmail { get; set; }
